@@ -10,7 +10,7 @@ require_once 'view_begin.php';
 		<p> <label> Annee: <input type="text" name="id_annee"/> </label> </p>
 		<p>
 			<label> Groupe:
-				<select name="id_annuaire" style="width:150px;">
+				<select name="id_groupe" style="width:150px;">
 					<?php foreach ($grp as $key => $value): ?>
 						<option value="<?= e($value['id_groupe']); ?>"/> <?= e($value['libelle']);?></option>
 					<?php endforeach; ?>
@@ -19,7 +19,7 @@ require_once 'view_begin.php';
 		</p>
 		<p>
 			<label> Individu:
-				<select name="id_statut" style="width:150px;">
+				<select name="id_individu" style="width:150px;">
 					<?php foreach ($individu as $key => $value): ?>
 						<option value="<?= e($value['id_individu']); ?>"/> <?= e($value['Nom'].' '.$value['Prenom']);?></option>
 					<?php endforeach; ?>

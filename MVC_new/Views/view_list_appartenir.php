@@ -17,16 +17,13 @@ require_once 'view_begin.php';
 					    <option value="1">L3 MIAGE APP</option>
 					    <option value="2">M1 MIAGE APP</option>
 					    <option value="3">M2 MIAGE APP</option>
-					    <option value="3">L2 MIASHS</option>
-					    <option value="4">Encadrants</option>
-
-
+					    <option value="4">L2 MIASHS</option>
+					    <option value="5">Encadrants</option>
 					</select>
-					<p><input type="text" name="test" value="a">
 				<p> <input type="submit" value="Exporter" /> </p>
 			</form>
-
-	        <div class="float-right"><dd>
+			<a href="?controller=list&action=api" class="btn btn-primary"><i class="exp"></i>API</a>
+	        <!--<div class="float-right"><dd>
 	            Exporter:
 	            <a href="exportDataG1.php" class="btn btn-primary"><i class="exp"></i>L3-MIAGE-APP</a>&nbsp
 	            <a href="exportDataG2.php" class="btn btn-primary"><i class="exp"></i>M1-MIAGE-APP</a>&nbsp
@@ -35,7 +32,7 @@ require_once 'view_begin.php';
 	            <a href="exportDataG5.php" class="btn btn-primary"><i class="exp"></i>Encadrant</a>&nbsp
 	           	<a href="exportDataG.php" class="btn btn-primary"><i class="exp"></i>Tous les groupes</a>
 
-	        </div>
+	        </div>-->
 	    </div>
 	    <!-- CSV file upload form -->
 	    <div class="col-md-12" id="importFrm" style="display: none;">
@@ -67,6 +64,9 @@ require_once 'view_begin.php';
 			</td>
 			<td>
 				<a href="?controller=list&action=informations&id_individu=<?= $value['id_individu'] ?>"><?= e($value['id_individu']) ?></a>
+			</td>
+			<td>
+				<a href="?controller=set&action=remove_individu_groupe&id_individu=<?= $value["id_individu"] ?>"><img src="Content/img/remove-icon.png" alt="" class="icone"/></a>
 			</td>
 		</tr>
 	<?php endforeach; ?>

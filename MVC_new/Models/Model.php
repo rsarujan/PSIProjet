@@ -122,6 +122,17 @@ class Model{
 		return $requete->fetch(PDO::FETCH_ASSOC);
 	}
 
+	public function get_individu_informations_groupe($i)
+	{
+		$requete = $this->db->prepare("SELECT * FROM Appartenir where id_individu=:i");
+		$requete->bindValue(':i', $i);
+		$requete->execute();
+		if (empty($requete)) {
+			return false;
+		}
+		return $requete->fetch(PDO::FETCH_ASSOC);
+	}
+
 
 	public function get_annuaire($i)
 	{
@@ -199,7 +210,7 @@ class Model{
 		$requete = $this->db->prepare("INSERT INTO appartenir VALUES (:id_annee,:id_groupe,:id_individu)");
 
 		$requete->bindValue(':id_annee', $infos['id_annee']);
-		$requete->bindValue(':id_groupe', $infos['libelle']);
+		$requete->bindValue(':id_groupe', $infos['id_groupe']);
 		$requete->bindValue(':id_individu', $infos['id_individu']);
 		$requete->execute();
 	}
@@ -242,6 +253,16 @@ class Model{
 		return true;
 	}
 
+	public function is_in_data_base_individu_groupe($i)
+	{
+
+		if (self::get_individu_informations_groupe($i)  == false) {
+			return false;
+		}
+		else
+		return true;
+	}
+
 	public function is_in_data_base_groupe($i)
 	{
 
@@ -277,6 +298,15 @@ class Model{
 	{
 		if (self::is_in_data_base_individu($i)) {
 			$requete = $this->db->prepare("DELETE FROM individu WHERE id_individu=:i");
+			$requete->bindValue(':i', $i);
+			$requete->execute();
+		}
+	}
+
+	public function remove_individu_groupe($i)
+	{
+		if (self::is_in_data_base_individu_groupe($i)) {
+			$requete = $this->db->prepare("DELETE FROM Appartenir WHERE id_individu=:i");
 			$requete->bindValue(':i', $i);
 			$requete->execute();
 		}
@@ -329,6 +359,27 @@ class Model{
 			$requete->bindValue(':num', $num);
 			//$requete->bindValue(':id_annuaire', $id_annuaire);
 			//$requete->bindValue(':id_statut', $id_groupe);
+
+			$requete->execute();
+			return true;
+		}
+		catch (Exception $e) {
+			return false;
+		}
+	}
+
+	public function Update_data_base_individu2($id,$nom, $prenom,$email,$num,$id_annuaire,$id_statut)
+	{
+		try{
+			$requete =
+			 $this->db->prepare("UPDATE individu SET Nom=:nom,Prenom=:prenom,email=:email,num=:num,id_annuaire=:id_annuaire,id_statut=:id_statut WHERE id_individu = :id");
+			$requete->bindValue(':id', $id);
+			$requete->bindValue(':nom', $nom);
+			$requete->bindValue(':prenom', $prenom);
+			$requete->bindValue(':email', $email);
+			$requete->bindValue(':num', $num);
+			$requete->bindValue(':id_annuaire', $id_annuaire);
+			$requete->bindValue(':id_statut', $id_groupe);
 
 			$requete->execute();
 			return true;
@@ -392,20 +443,23 @@ class Model{
 
 	public function exportBy($i)
 	{
-		//$requete = $this->db->prepare("SELECT id_annee,libelle, Nom, Prenom from Appartenir as a natural join Groupe as g join Individu as ind where a.id_groupe = g.id_groupe and a.id_individu=ind.id_individu and a.id_groupe=:i");
-		//$requete = $this->db->prepare("SELECT id_annee from Appartenir where id_groupe=:i");
-		//$requete->bindValue(':i', $i);
-		//$requete->execute();
-		/*if (empty($requete)) {
-			return false;
-		}*/
-		
-		//print_r($requete->fetch(PDO::FETCH_ASSOC));*/
-
 		$x=$this->db->prepare("SELECT id_annee,libelle, Nom, Prenom from Appartenir a, Groupe g, Individu ind where a.id_groupe = g.id_groupe and a.id_individu=ind.id_individu and a.id_groupe=?");
 		$x->execute(array($i));
-		//$toto=$x->fetch();
-		//print_r($toto);
+		return $x;
+	}
+
+	public function check($i)
+	{
+		$x=$this->db->prepare("SELECT id_individu FROM Individu WHERE num = ?");
+		$x->execute(array($i));
+		return $x;
+		//$prevResult = $db->query($prevQuery);
+	}
+
+	public function api($i)
+	{
+		$x=$this->db->prepare("SELECT * from Appartenir a, Groupe g, Individu i where a.id_groupe=g.id_groupe and a.id_individu=i.individu and a.id_groupe=?");
+		$x->execute(array($i));
 		return $x;
 	}
 }

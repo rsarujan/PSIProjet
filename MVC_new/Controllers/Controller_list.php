@@ -246,12 +246,12 @@ class Controller_list extends Controller{
 			// Get records from the database 
 			
 
-			    // Output each row of the data, format line as csv and write to file pointer 
-			    while($row = $result->fetch())
-			    { 
-			        $lineData = array($row['id_annee'], $row['libelle'],$row['Nom'], $row['Prenom']); 
-			        fputcsv($f, $lineData, $delimiter); 
-			    } 
+		    // Output each row of the data, format line as csv and write to file pointer 
+		    while($row = $result->fetch())
+		    { 
+		        $lineData = array($row['id_annee'], $row['libelle'],$row['Nom'], $row['Prenom']); 
+		        fputcsv($f, $lineData, $delimiter); 
+		    } 
 			 
 			// Move back to beginning of file 
 			fseek($f, 0); 
@@ -268,7 +268,70 @@ class Controller_list extends Controller{
 			$this->render('list_appartenir',$data);
 
 		}
+	}
+
+	public function action_import_individu()
+	{
+		if(isset($_POST['importSubmit']))
+		{
+		    // Allowed mime types
+		    $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
+		    
+		    // Validate whether selected file is a CSV file
+		    if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'], $csvMimes)){
+		        // If the file is uploaded
+		        if(is_uploaded_file($_FILES['file']['tmp_name'])){
+		            // Open uploaded CSV file with read-only mode
+		            $csvFile = fopen($_FILES['file']['tmp_name'], 'r');
+		            
+		            // Skip the first line
+		            fgetcsv($csvFile);
+		            // Parse data from CSV file line by line
+		            while(($line = fgetcsv($csvFile)) !== FALSE){
+		                $line=explode(';', implode("", $line));
+		                // Get row data
+		                $nom   = $line[0];
+		                $prenom   = $line[1];
+		                $email  = $line[2];
+		                $num   = $line[3];
+		                $annuaire  = $line[4];
+		                $statut = $line[5];
+		                
+		                // Check whether member already exists in the database with the same email
+		                $m = Model::get_model();
+						$prevResult = $m->check($line[3]);
+
+		                if($row=$prevResult->fetch()){
+		                    // Update member data in the database
+		                    $db->query("UPDATE Individu SET Nom = '".$nom."', Prenom = '".$prenom."', email = '".$email."', id_annuaire = '".$annuaire."', id_statut = '".$statut."', WHERE num = '".$num."'");
+		                }else{
+		                    // Insert member data in the database
+		                    $m = Model::get_model();
+							$prevResult = $m->add_individu(array('Nom'=>$nom, 'Prenom'=>$prenom, 'email'=>$email, 'num'=>$num, 'id_annuaire'=>$annuaire,'id_statut'=>$statut));
+		                }
+		            }
+		            // Close opened CSV file
+		            fclose($csvFile);
+		            
+		            $qstring = '?status=succ';
+		            header("Location: ?controller=list&action=pagination&start=7");
+		        }else{
+		            $qstring = '?status=err';
+		        }
+		    }
+		}
+		//exit();
+		//$this->render('list_individu',$data);
 	}	
+
+	public function api()
+	{
+		if (isset($_GET['id_groupe']) && $_GET['id_groupe']!="") {
+			$m = Model::get_model();
+			$result = $m->api($_POST['id_groupe']);
+		}
+
+	}
 }
 
 

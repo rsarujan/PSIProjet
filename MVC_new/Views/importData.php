@@ -9,18 +9,19 @@ if(isset($_POST['importSubmit'])){
     
     // Validate whether selected file is a CSV file
     if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'], $csvMimes)){
-        
+        echo 'yes1'
         // If the file is uploaded
         if(is_uploaded_file($_FILES['file']['tmp_name'])){
-            
+            echo 'yes2'
             // Open uploaded CSV file with read-only mode
             $csvFile = fopen($_FILES['file']['tmp_name'], 'r');
             
             // Skip the first line
             fgetcsv($csvFile);
-            
+            echo 'yes3'
             // Parse data from CSV file line by line
             while(($line = fgetcsv($csvFile)) !== FALSE){
+                echo 'yes4'
                 // Get row data
                 $nom   = $line[0];
                 $prenom   = $line[1];
@@ -34,13 +35,16 @@ if(isset($_POST['importSubmit'])){
                 $prevResult = $db->query($prevQuery);
                 
                 if($prevResult->num_rows > 0){
+                    echo 'yes5'
                     // Update member data in the database
                     $db->query("UPDATE Individu SET Nom = '".$nom."', Prenom = '".$prenom."', email = '".$email."', id_annuaire = '".$annuaire."', id_statut = '".$statut."', WHERE num = '".$num."'");
                 }else{
+                    echo 'yes6'
                     // Insert member data in the database
                     $db->query("INSERT INTO Individu (Nom,Prenom,email,num,id_annuaire,id_statut) VALUES ('".$nom."', '".$prenom."', '".$email."', '".$num."', '".$annuaire."','".$statut."')");
                 }
             }
+            echo 'yes7'
             // Close opened CSV file
             fclose($csvFile);
             
@@ -54,4 +58,4 @@ if(isset($_POST['importSubmit'])){
 }
 
 // Redirect to the listing page
-header("Location: index.php".$qstring);
+//header("Location: index.php".$qstring);

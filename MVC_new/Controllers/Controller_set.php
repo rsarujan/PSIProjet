@@ -48,6 +48,7 @@ class Controller_set extends Controller
 
 
 
+
 	public function action_form_add_grp(){
 		$m = Model::get_model();
 		$data =['groupe' => $m->get_last_grp()];
@@ -185,13 +186,33 @@ class Controller_set extends Controller
 	public function action_add_appartenir(){
 		$m = Model::get_model();
 		$m->add_Appartenir($_POST);
+		//print_r($m);
+		//var_dump($_POST);
 		$message = "L'individu a bien été attribué à un groupe.";
 		$data=['title'=>'Individu, Groupe','message'=>$message];
 		$this->render('message',$data);
 	}
 
 
+	public function action_remove_individu_groupe(){
 
+		if (isset($_GET['id_individu']) && trim($_GET['id_individu']) != "" && ((string) $_GET['id_individu']) == ((string)(int) $_GET['id_individu']))
+		{
+			$m = Model::get_model();
+			if ($m->is_in_data_base_individu_groupe($_GET['id_individu'])) {
+				$m->remove_individu_groupe($_GET['id_individu']);
+				$message = "L'individu est bien supprimé.";
+			}
+			else
+				$message = "Il n'y a pas d'individu sous ce nom.";
+		}
+		else {
+			$message = "L'url ne marche pas.";
+		}
+
+		$data=['title'=>'Individu','message'=>$message];
+		$this->render('message',$data);
+	}
 
 
 
