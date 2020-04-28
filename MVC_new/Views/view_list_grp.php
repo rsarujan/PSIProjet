@@ -6,6 +6,9 @@ require_once 'view_begin.php';
 <table>
 	<h1> Liste des groupes </h1>
 	<tr>
+		<td><STRONG><a href="?controller=set&action=form_add_grp"> Ajouter un groupe</a></STRONG></td>
+	</tr>
+	<tr>
 		<td>
 			<STRONG>Libelle</STRONG>
 		</td>

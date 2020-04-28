@@ -37,20 +37,31 @@ if(!empty($_GET['status'])){
 	<h1> Liste des individus </h1>
 	<div class="row">
 	    <!-- Import & Export link -->
-	    <div class="col-md-12 head">
+	    <!--<div class="col-md-12 head">
 	        <div class="float-right"><dd>
 	            <a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');"><i class="plus"></i> Importer</a>
 	            &nbsp <a href="exportData.php" class="btn btn-primary"><i class="exp"></i>Exporter</a>
 	        </div>
 	    </div>
-	    <!-- CSV file upload form -->
+
 	    <div class="col-md-12" id="importFrm" style="display: none;">
 	        <form action="?controller=list&action=import_individu" method="post" enctype="multipart/form-data">
 	            <input type="file" name="file" />
 	            <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
 	        </form>
 	    </div>
-	</div><br>
+	</div><br>-->
+	<tr>
+		<td><STRONG><a href="?controller=set&action=form_add_individ"> Ajouter un individu</a></STRONG></td>
+		<td><STRONG><a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');"><i class="plus"></i> Importer la liste des individus</a><div class="col-md-12" id="importFrm" style="display: none;">
+	        <form action="?controller=list&action=import_individu" method="post" enctype="multipart/form-data">
+	            <input type="file" name="file" />
+	            <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+	        </form>
+	    </div></STRONG></td>
+		<td><STRONG><a href="exportData.php" class="btn btn-primary"><i class="exp"></i>Exporter la liste des individus</a></STRONG>
+		</td>
+	</tr>
 	<tr>
 		<td>
 			<STRONG>Nom</STRONG>

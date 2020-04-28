@@ -151,25 +151,25 @@ class Controller_list extends Controller{
 	}
 
 	public function action_informations_appartenir(){
-		$m = Model::get_model();
-		if(isset($_GET['id_annee'])
-			and trim($_GET['id_annee'])!=""
-			and ((string) $_GET['id_annee']) === ((string)(int) $_GET['id_annee'])
-			and (int) $_GET['id_annee'] > 0
-			and $m ->is_in_data_base_appartenir($_GET['id_annee'])){
+        $m = Model::get_model();
+        if(isset($_GET['id_annee'])
+            and trim($_GET['id_annee'])!=""
+            and ((string) $_GET['id_annee']) === ((string)(int) $_GET['id_annee'])
+            and (int) $_GET['id_annee'] > 0
+            and $m ->is_in_data_base_appartenir($_GET['id_annee'])){
 
-			$data = ['tab' => $m->get_nb_appartenir($_GET['id_annee'])];
+            $data = ['tab' => $m->get_nb_appartenir($_GET['id_annee'])];
 
-			foreach ($data['tab']as $key => $value) {
-				if($value == null)
-					$value = '???';
-			}
-			$this->render('informations',$data);
-		}
-		else{
-			$this->action_error();
-		}
-	}
+            foreach ($data['tab']as $key => $value) {
+                if($value == null)
+                    $value = '???';
+            }
+            $this->render('informations',$data);
+        }
+        else{
+            $this->action_error();
+        }
+    }
 
 
 	public function action_pagination(){
@@ -324,13 +324,10 @@ class Controller_list extends Controller{
 		//$this->render('list_individu',$data);
 	}	
 
-	public function api()
+	public function action_api()
 	{
-		if (isset($_GET['id_groupe']) && $_GET['id_groupe']!="") {
-			$m = Model::get_model();
-			$result = $m->api($_POST['id_groupe']);
-		}
-
+		$m = Model::get_model();
+		$m->api();
 	}
 }
 

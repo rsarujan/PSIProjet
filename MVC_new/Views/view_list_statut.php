@@ -5,6 +5,7 @@ require_once 'view_begin.php';
 <main>
 <table>
 	<h1> Liste des statuts </h1>
+	<tr><td><STRONG><a href="?controller=set&action=form_add_statut"> Ajouter un statut</a></STRONG></td></tr>
 	<tr>
 		<td>
 			<STRONG>Libelle</STRONG>

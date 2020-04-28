@@ -8,20 +8,20 @@
 	<body>
 		<nav>
 			<ul>
-				<li><a href="?controller=list&action=individ">Liste des individus</a></li>
-				<li><a href="?controller=set&action=form_add_individ"> Ajouter un individu</a></li>
+				<li><a href="?controller=list&action=individ">Individus</a></li>
+				<!--<li><a href="?controller=set&action=form_add_individ"> Ajouter un individu</a></li>-->
 				<br><br>
-				<li><a href="?controller=list&action=grp">Liste des groupes</a></li>
-				<li><a href="?controller=set&action=form_add_grp"> Ajouter un groupe</a></li>
+				<li><a href="?controller=list&action=grp">Groupes</a></li>
+				<!--<li><a href="?controller=set&action=form_add_grp"> Ajouter un groupe</a></li>-->
 				<br><br>
 				<li><a href="?controller=list&action=appartenir">Attribution groupe</a></li>
-				<li><a href="?controller=set&action=form_add_appartenir"> Attribution groupe</a></li>
-				<br><br>				
-				<li><a href="?controller=list&action=statut">Liste des statuts</a></li>
-				<li><a href="?controller=set&action=form_add_statut"> Ajouter un statut</a></li>
-				<br><br>
-				<li><a href="?controller=list&action=annuaire">Liste des annuaires</a></li>
-				<li><a href="?controller=set&action=form_add_annuaire"> Ajouter un annuaire</a></li>
+				<!--<li><a href="?controller=set&action=form_add_appartenir"> Attribution groupe</a></li>-->
+				<!--<br><br>-->				
+				<!--<li><a href="?controller=list&action=statut">Statuts</a></li>-->
+				<!--<li><a href="?controller=set&action=form_add_statut"> Ajouter un statut</a></li>-->
+				<!--<br><br>
+				<li><a href="?controller=list&action=annuaire">Annuaires</a></li>-->
+				<!--<li><a href="?controller=set&action=form_add_annuaire"> Ajouter un annuaire</a></li>-->
 
 
 

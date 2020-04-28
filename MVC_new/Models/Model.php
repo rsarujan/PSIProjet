@@ -97,10 +97,10 @@ class Model{
 	}
 
 	public function get_last_appartenir(){
-		$requete = $this->db->prepare("select * from appartenir");
-		$requete->execute();
-		return $requete->fetchAll(PDO::FETCH_ASSOC);
-	}
+        $requete = $this->db->prepare("SELECT * from appartenir a, individu i, groupe g  where a.id_individu = i.id_individu and a.id_groupe = g.id_groupe ");
+        $requete->execute();
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 	public function get_nb_appartenir()
 	{
@@ -456,11 +456,18 @@ class Model{
 		//$prevResult = $db->query($prevQuery);
 	}
 
-	public function api($i)
+	public function api()
 	{
-		$x=$this->db->prepare("SELECT * from Appartenir a, Groupe g, Individu i where a.id_groupe=g.id_groupe and a.id_individu=i.individu and a.id_groupe=?");
-		$x->execute(array($i));
-		return $x;
+		//$requete = $this->db->prepare("SELECT * FROM Appartenir");
+		$requete = $this->db->prepare("SELECT g.libelle, i.nom,i.prenom,i.email,i.num, an.libelle, s.libelle from Appartenir a, Groupe g, Individu i, annuaire an, statut s where a.id_individu=i.id_individu and a.id_groupe = g.id_groupe and i.id_statut=s.id_statut and i.id_annuaire=an.id_annuaire");
+		//$requete->bindValue(':i', $i);
+		$requete->execute();
+		if (empty($requete)) {
+			return false;
+		}
+		$x=$requete->fetchAll(PDO::FETCH_ASSOC);
+		//print_r($x);
+		echo json_encode($x,JSON_UNESCAPED_UNICODE);
 	}
 }
 

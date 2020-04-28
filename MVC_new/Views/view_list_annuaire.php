@@ -5,6 +5,7 @@ require_once 'view_begin.php';
 <main>
 <table>
 	<h1> Liste des annuaires </h1>
+	<tr><td><STRONG><a href="?controller=set&action=form_add_annuaire"> Ajouter un annuaire</a></STRONG></td></tr>
 	<tr>
 		<td>
 			<STRONG>Libelle</STRONG>

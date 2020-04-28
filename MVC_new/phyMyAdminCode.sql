@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 22, 2020 at 09:18 AM
+-- Generation Time: Apr 28, 2020 at 03:09 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -42,9 +42,9 @@ INSERT INTO `Annuaire` (`id_annuaire`, `libelle`) VALUES
 
 CREATE TABLE `Appartenir` (
   `id_annee` int(11) NOT NULL,
-  `id_groupe` int(11) DEFAULT NULL,
-  `id_individu` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_groupe` int(11) NOT NULL,
+  `id_individu` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Appartenir`
@@ -247,7 +247,8 @@ INSERT INTO `Appartenir` (`id_annee`, `id_groupe`, `id_individu`) VALUES
 (2020, 5, 194),
 (2020, 5, 195),
 (2020, 5, 196),
-(2020, 5, 197);
+(2020, 5, 197),
+(2021, 1, 211);
 
 -- --------------------------------------------------------
 
@@ -489,7 +490,9 @@ INSERT INTO `Individu` (`id_individu`, `Nom`, `Prenom`, `email`, `num`, `id_annu
 (195, 'Non defini', 'Non defini', 'Non defini.Non defini@parisnanterre.fr', 404, 1, 2),
 (196, 'Pierre', 'Laurent', 'Laurent.Pierre@parisnanterre.fr', 34163, 1, 2),
 (197, 'Hyon', 'Emmanuel', 'Emmanuel.Hyon@parisnanterre.fr', 34164, 1, 2),
-(202, 'Raja', 'Saru', 'r.saru@gmail.com', 116034, 2, 1);
+(202, 'Raja', 'Saru', 'r.saru@gmail.com', 116034, 2, 1),
+(211, 'Vrrv', 'Rgdisskq', 'gfejrb@ge.fr', 256465, 2, 1),
+(212, 'cvjhv', 'vbjhbk', 'rftgyhujiko@fe.fr', 345678, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -558,40 +561,33 @@ ALTER TABLE `Statut`
 -- AUTO_INCREMENT for table `Annuaire`
 --
 ALTER TABLE `Annuaire`
-  MODIFY `id_annuaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_annuaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `GROUPE`
 --
 ALTER TABLE `GROUPE`
-  MODIFY `id_groupe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_groupe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `Individu`
 --
 ALTER TABLE `Individu`
-  MODIFY `id_individu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+  MODIFY `id_individu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 
 --
 -- AUTO_INCREMENT for table `Statut`
 --
 ALTER TABLE `Statut`
-  MODIFY `id_statut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_statut` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `Appartenir`
---
-ALTER TABLE `Appartenir`
-  ADD CONSTRAINT `fkGroupe` FOREIGN KEY (`id_groupe`) REFERENCES `GROUPE` (`id_groupe`),
-  ADD CONSTRAINT `fkIndividu` FOREIGN KEY (`id_individu`) REFERENCES `Individu` (`id_individu`);
-
---
 -- Constraints for table `Individu`
 --
 ALTER TABLE `Individu`
   ADD CONSTRAINT `fkStatut` FOREIGN KEY (`id_statut`) REFERENCES `Statut` (`id_statut`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fkid_annuaire` FOREIGN KEY (`id_annuaire`) REFERENCES `Annuaire` (`id_annuaire`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fkid_annuaire` FOREIGN KEY (`id_annuaire`) REFERENCES `Annuaire` (`id_annuaire`) ON DELETE CASCADE ON UPDATE CASCADE;
