@@ -46,7 +46,7 @@ require_once 'view_begin.php';
 			</td>
 
 			<td>
-                <a href="?controller=list&action=informations_grp&id_groupe=<?=$value['id_groupe'] ?>"><?= e($value['libelle']) ?></a>
+                <!--<a href="?controller=list&action=informations_grp&id_groupe=</*?=$value['id_groupe'] */?>">--><?= e($value['libelle']) ?></a>
             </td>
             <td>
                 <a href="?controller=list&action=informations&id_individu=<?= $value['id_individu'] ?>"><?= e($value['Prenom']) ?></a>

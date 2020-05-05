@@ -80,7 +80,7 @@ if(!empty($_GET['status'])){
 	<?php foreach($tab as $value): ?>
 		<tr>
 			<td>
-				<a href="?controller=list&action=informations&id_individu=<?= $value['id_individu'] ?>"><?= e($value['Nom']) ?></a>
+				<!--<a href="?controller=list&action=informations&id_individu=<?/*= $value['id_individu'] */?>">--><?= e($value['Nom']) ?></a>
 			</td>
 			<td>
 				<?= e($value['Prenom']);?>

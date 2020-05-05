@@ -17,7 +17,7 @@ require_once 'view_begin.php';
 	<?php foreach($tab as $value): ?>
 		<tr>
 			<td>
-				<a href="?controller=list&action=informations_grp&id_groupe=<?= $value['id_groupe'] ?>"><?= e($value['libelle']) ?></a>
+				<!--<a href="?controller=list&action=informations_grp&id_groupe=<?//=$value['id_groupe']?>">--><?= e($value['libelle']) ?></a>
 			</td>
 			<td>
 				<a href="?controller=set&action=remove_grp&id_groupe=<?= $value["id_groupe"] ?>"><img src="Content/img/remove-icon.png" alt="" class="icone"/></a>
