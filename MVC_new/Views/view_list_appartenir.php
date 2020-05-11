@@ -18,6 +18,7 @@ require_once 'view_begin.php';
 					    <option value="3">M2 MIAGE APP</option>
 					    <option value="4">L2 MIASHS</option>
 					    <option value="5">Encadrants</option>
+					    <option value="6">TestNewgrp</option>
 					</select>
 				<p> <input type="submit" value="Exporter" /> </p>
 			</form>

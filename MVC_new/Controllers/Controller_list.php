@@ -314,7 +314,7 @@ class Controller_list extends Controller{
 		            fclose($csvFile);
 		            
 		            $qstring = '?status=succ';
-		            header("Location: ?controller=list&action=pagination&start=7");
+		            header("Location: ?controller=list&action=pagination&start=8");
 		        }else{
 		            $qstring = '?status=err';
 		        }
