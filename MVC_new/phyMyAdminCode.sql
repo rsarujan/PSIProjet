@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 28, 2020 at 03:09 PM
+-- Generation Time: May 11, 2020 at 07:35 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -248,7 +248,7 @@ INSERT INTO `Appartenir` (`id_annee`, `id_groupe`, `id_individu`) VALUES
 (2020, 5, 195),
 (2020, 5, 196),
 (2020, 5, 197),
-(2021, 1, 211);
+(2020, 6, 215);
 
 -- --------------------------------------------------------
 
@@ -270,7 +270,8 @@ INSERT INTO `GROUPE` (`id_groupe`, `libelle`) VALUES
 (2, 'M1 MIAGE APP'),
 (3, 'M2 MIAGE APP'),
 (4, 'L2 MIASHS'),
-(5, 'Encadrant');
+(5, 'Encadrant'),
+(6, 'TestNewgrp');
 
 -- --------------------------------------------------------
 
@@ -492,7 +493,9 @@ INSERT INTO `Individu` (`id_individu`, `Nom`, `Prenom`, `email`, `num`, `id_annu
 (197, 'Hyon', 'Emmanuel', 'Emmanuel.Hyon@parisnanterre.fr', 34164, 1, 2),
 (202, 'Raja', 'Saru', 'r.saru@gmail.com', 116034, 2, 1),
 (211, 'Vrrv', 'Rgdisskq', 'gfejrb@ge.fr', 256465, 2, 1),
-(212, 'cvjhv', 'vbjhbk', 'rftgyhujiko@fe.fr', 345678, 2, 1);
+(212, 'cvjhv', 'vbjhbk', 'rftgyhujiko@fe.fr', 345678, 2, 1),
+(213, 'test', 'test', 'a@a.fr', 96556789, 1, 1),
+(215, 'testImport', 'testI', 'import@test.fr', 258848, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -567,13 +570,13 @@ ALTER TABLE `Annuaire`
 -- AUTO_INCREMENT for table `GROUPE`
 --
 ALTER TABLE `GROUPE`
-  MODIFY `id_groupe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_groupe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `Individu`
 --
 ALTER TABLE `Individu`
-  MODIFY `id_individu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `id_individu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
 
 --
 -- AUTO_INCREMENT for table `Statut`
