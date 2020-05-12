@@ -20,16 +20,6 @@
 │   │   ├── Controller_home.php
 │   │   ├── Controller_list.php
 │   │   └── Controller_set.php
-│   ├── Delete
-│   │   ├── dbConfig.php
-│   │   ├── exportData.php
-│   │   ├── exportDataG.php
-│   │   ├── exportDataG1.php
-│   │   ├── exportDataG2.php
-│   │   ├── exportDataG3.php
-│   │   ├── exportDataG4.php
-│   │   ├── exportDataG5.php
-│   │   └── importData.php
 │   ├── Models
 │   │   └── Model.php
 │   ├── README.txt
